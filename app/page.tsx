@@ -10,7 +10,7 @@ export default function Home() {
   const [courts, setCourts] = useState([]);
 
   useEffect(() => {
-    fetch("https://66723415e083e62ee43e4f97.mockapi.io/Court")
+    fetch("https://667a317c18a459f63952aa1c.mockapi.io/api/v1/Court")
       .then((response) => response.json())
       .then((data) => {
         setCourts(data);
@@ -22,15 +22,20 @@ export default function Home() {
     <div>
       <HomeBanner />
       <MainFeature />
-      <div className="flex flex-wrap justify-between px-16">
+      <div className="text-4xl font-bold px-28 mt-12">
+        Our population options
+      </div>
+      <div className="flex flex-wrap -m-2 px-28 mt-3 items-stretch">
         {courts.slice(0, 8).map((court) => (
-          <CourtDisplay
-            key={court.courtId}
-            name={court.courtName}
-            description={court.description}
-            price={0}
-            image={court.image}
-          />
+          <div className="p-2 w-1/2 md:w-1/4" key={court.id}>
+            <CourtDisplay
+              key={court.id}
+              name={court.name}
+              description={court.description}
+              price={court.price}
+              image={court.image}
+            />
+          </div>
         ))}
       </div>
     </div>
